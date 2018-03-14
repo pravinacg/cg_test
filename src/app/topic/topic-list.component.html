@@ -1,0 +1,71 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-9'> <input type='text' class="form-control"/>
+                <button class="btn-primary">Search</button>
+                                </div>
+           
+            
+        </div>
+       
+        <div class='table-responsive'>
+            <table class="table table-responsive table-hover" *ngIf='allTopics && allTopics.length'>
+                <thead>
+                    <tr>
+                        <th>Topics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="container" *ngFor="let allTopic of allTopics; let i = index">
+                        <a href="#List-{{ i }}" (click)="getSubTopics(allTopic.topics)" class="btn btn-info" data-toggle="collapse">{{allTopic.topics}}</a>
+
+                        <td>
+                            <div id="List-{{ i }}" class="collapse">
+                                <table class="table table-border">
+                                    <thead>
+                                        <tr class='row'>
+                                            <th>Sub-Topics</th>
+                                            <th>Revision</th>
+                                            <th>Topics</th>
+                                            <th>Articles</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tr class='row'>
+                                       
+                                        <td>
+                                            <table class="table table-responsive table-hover">
+                                                <tbody>
+                                                    <tr class="container" *ngFor="let dr of this.dataResults?.results; let iSubTopic = index">
+                                                        <td> 
+                                                            <a href="#SubtopicList-{{ iSubTopic }}" class="btn btn-info">{{dr.topics}}</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </td>
+                                            <td>
+                                            <revisionS [title]="allTopic.recitaNum" [revisionData]="this.title1"></revisionS>
+                                        </td>
+                                        <td>{{allTopic.topics}}</td>
+
+                                        <td>
+
+                                             <articleS [articleList]="this.articlNumList" ></articleS>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
