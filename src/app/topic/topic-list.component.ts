@@ -2,7 +2,6 @@ import { Component,OnInit,Input  } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { ITopic } from './topic';
 import { BlueMixService } from '../products/bluemix-service';
-import { articleListComponent } from '../products/article-list.component';
 import { IRootObject } from '../products/RootObject';
 import { IResult } from '../products/result';
 import { Title } from '@angular/platform-browser';
@@ -17,6 +16,14 @@ import { Observable } from 'rxjs/Observable';
     table .collapse.in {
         display:table-row;
     }
+    .adiv {
+        border-radius: 25px;
+        background: #73AD21;
+        padding: 20px; 
+        width: 200px;
+        height: 20px; 
+    }
+    
     `],
     
 })
@@ -29,7 +36,8 @@ export class topicListComponent implements OnInit {
     selectedTitle: string = '<div>Heloo</div>';
     errorMessage: string;
     dataResults: IRootObject;
-
+    test:IRootObject;
+    SearchValue :string='';
     results: IResult[] =  [];
     numberList:number[]=[];
     tsList:string[]=[];
@@ -37,15 +45,19 @@ export class topicListComponent implements OnInit {
     filteredProducts: IResult[];
     products: IResult[] = [];
     
-    title1 = new Array();
+    rTitles = new Array();
+    aTitles=new Array();
 
-    articlNumList:number[]=[9,10];
-    recitleNumList = new Array(9,3);
-  
-
-
+    tempSubTopic:string[]=[];
+    articlNumList:number[]=[];
+    recitleNumList:number[]=[];
+    recitleNumList1:number[]=[];
+    articlNumList1:number[]=[];
+    confidanceList:number[]=[];
+    confidance:number=0;
     temp:number;
-
+    
+    subTopicList = new Array();
     get listFilter(): string {
         return this._listFilter;
     }
@@ -54,67 +66,136 @@ export class topicListComponent implements OnInit {
         this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
    
+   
+
     performFilter(filterBy: string): IResult[] {
         filterBy = filterBy.toLocaleLowerCase();
         return this.products.filter((product: IResult) =>
               product.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
 
-    getSubTopics(topic:string )
+
+    //search 
+    getSearchResult(topic:string)
     {
-       
-        this._topicService.getServiceData(topic)
-        .subscribe(resultArray => {
-        this.selTopic=topic;
-         this.edited = true;
-         this.selTopic=topic;
+      
+        //this.SearchResult(this.SearchValue);
         
+        this._topicService.getSearchData(this.SearchValue)
+        .subscribe(resultArray => {
          this.dataResults=resultArray;
-         //const filters = Array.of(this.dataResults.map(f => f.result));
-
          if(this.dataResults != undefined && this.dataResults !== null){
+         this.recitleNumList = [];
+         this.articlNumList = [];
+         this.aTitles=[];
+         this.rTitles=[];
+         let notSure: any; 
          for(let i = 0; i < this.dataResults.results.length; i++){
-
+            
             this.temp = Number((this.dataResults.results[i].index));
+          
              if(this.dataResults.results[i].title.includes("Recital"))
              {
-              this.articlNumList.push(this.temp);
               this.recitleNumList.push(this.temp);
+              this.rTitles.push({title:this.dataResults.results[i].title, number: this.dataResults.results[i].index, text: this.dataResults.results[i].text});
              }
              else
              {
+                this.temp = Number(this.dataResults.results[i].title.match(/\d+/g).map(Number));
                 this.articlNumList.push(this.temp);
-               
+                this.aTitles.push({title:this.dataResults.results[i].title, number:this.temp, text: this.dataResults.results[i].text});
              }
-            this.title1.push({title:this.dataResults.results[i].title, number: this.dataResults.results[i].index, text: this.dataResults.results[i].text});
-        }
-      //  this.articleNum=this.articlNumList.toString();
-       // this.recitaNum=this.recitleNumList.toString();
-      //  this.articleNum=this.recitaNum;
-        console.log(this.articlNumList);
-        console.log(this.recitleNumList);
+             notSure=this.dataResults.results[i].result_metadata;
+             var a=notSure.confidence;
+             if (Number(a) >= 0.5)
+             {
+                 this.confidanceList.push(this.temp);
+             }
+          }
+
+     console.log(this.dataResults.results);
+     console.log(this.confidanceList);
+   
     }
 
         },
         error => this.errorMessage = <any>error);
+    }
+    
+
+
+    getSubTopicsData(topic:string)
+    {
        
-       
-       
+        this.GetTopicDataFromService(topic);
     }
 
-    
-    
+   
+    GetTopicDataFromService(topic:string)
+    {
+        this._topicService.getServiceData(topic)
+        .subscribe(resultArray => {
+         this.dataResults=resultArray;
+         if(this.dataResults != undefined && this.dataResults !== null){
+         this.recitleNumList = [];
+         this.articlNumList = [];
+         this.rTitles=[];
+         this.aTitles=[];
+         for(let i = 0; i < this.dataResults.results.length; i++){
+
+            this.temp = Number((this.dataResults.results[i].index));
+            var a= this.dataResults.results[i].result_metadata;
+             if(this.dataResults.results[i].title.includes("Recital"))
+             {
+              this.recitleNumList.push(this.temp);
+              this.rTitles.push({title:this.dataResults.results[i].title, number: this.dataResults.results[i].index, text: this.dataResults.results[i].text});
+             }
+             else
+             {
+                this.temp = Number(this.dataResults.results[i].title.match(/\d+/g).map(Number));
+                this.articlNumList.push(this.temp);
+                this.aTitles.push({title:this.dataResults.results[i].title, number:this.temp, text: this.dataResults.results[i].text});
+             }
+          }
+
+      console.log(this.dataResults.results);
+      console.log(this.recitleNumList);
+      console.log(this.rTitles);
+      console.log(this.articlNumList);
+        console.log(this.aTitles);
+        console.log(this.subTopicList);
+    }
+
+        },
+        error => this.errorMessage = <any>error);
+    }
     
 
-    constructor(private _topicService: BlueMixService) {
+     getSubTopics(topic:string)
+    {
+        
+        this.GetTopicDataFromService(topic);
+        this.selTopic=topic;
+        this.edited = true;
+     }
+
+     constructor(private _topicService: BlueMixService) {
         
     }
+
+
 
     ngOnInit(): void {
         this._topicService.getTopics()
         .subscribe(topics => {
             this.allTopics = topics;
-           
+            for(let i = 0; i < this.allTopics.length; i++){
+                var a=this.allTopics[i].subtopics;
+                 console.log(a);
+                this.subTopicList.push({topic:this.allTopics[i].topics, subTTopic:a});
+                console.log(this.subTopicList);
+            }
+
         },
         error => this.errorMessage = <any>error);
 

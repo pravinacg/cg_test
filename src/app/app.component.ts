@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
 import { TopicService } from './topic/topic-service';
-import { RecitalService } from './products/recital-service';
 import { BlueMixService } from './products/bluemix-service';
 @NgModule({
   imports: []
@@ -14,9 +13,6 @@ import { BlueMixService } from './products/bluemix-service';
       <pm-products></pm-products>
   </div>
   `,
-  providers: [ TopicService,RecitalService,BlueMixService ]
+  providers: [ TopicService,BlueMixService ]
 })
-
-export class AppComponent {
- 
-}
+export class AppComponent { }

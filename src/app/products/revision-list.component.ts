@@ -1,17 +1,26 @@
 import {Component,Input ,OnInit} from '@angular/core';
 import { IRootObject } from './RootObject';
 import { BlueMixService } from './bluemix-service';
+import {Pipe} from  '@angular/core';
+// Tell Angular2 we're creating a Pipe with TypeScript decorators
+
 @Component({
   selector: 'revisionS',
   styles: [`
     .rcell {
       display: block;
-      background-color: #dcdcdc;
+      background-color:rgb(21, 184, 102);
       text-align: center;
       width:100%;
     }
     .ncell {
       display: block;
+      text-align: center;
+      width:100%;
+    }
+    .ccell {
+      display: block;
+      background-color: #dcdccc;
       text-align: center;
       width:100%;
     }
@@ -23,7 +32,8 @@ import { BlueMixService } from './bluemix-service';
      
   }
   `],
-  templateUrl: './revision-list.component.html'
+  templateUrl: './revision-list.component.html',
+  //pipes:numberPipe
 })
 
 export class revisionListComponent  implements OnInit { 
@@ -31,9 +41,11 @@ export class revisionListComponent  implements OnInit {
   tblcol= new Array(10);
   maxCount: number = 173;
   selRecitalNumber:number;
-  revisionList: number[] = [41,157,47,50,138,40,121,37,46,55];
+  @Input() revisionList: number[] = [];
   @Input() title:string;
   @Input() revisionData : any[];
+  @Input() confidanceList:number[]=[];
+
   
   rootResults: IRootObject[] =  [];
   errorMessage: string;
@@ -42,8 +54,9 @@ export class revisionListComponent  implements OnInit {
 
   selRevision(_rarticleNumber)
   {
-    alert(_rarticleNumber);
+    
     this.selRecitalNumber=_rarticleNumber;
+   
   }
 
   constructor(private _blueMixService: BlueMixService) {

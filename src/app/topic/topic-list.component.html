@@ -3,69 +3,73 @@
         {{pageTitle}}
     </div>
     
-    <div class='panel-body'>
+<div class='panel-body'>
         <div class='row'>
-            <div class='col-md-2'>Filter by:</div>
-            <div class='col-md-9'> <input type='text' class="form-control"/>
-                <button class="btn-primary">Search</button>
-                                </div>
-           
-            
-        </div>
-       
-        <div class='table-responsive'>
+            <div class='col-md-2'></div>
+            <div class='col-md-9'> 
+            </div>
+ </div>
+ 
+
+  <div class='table-responsive'>
             <table class="table table-responsive table-hover" *ngIf='allTopics && allTopics.length'>
-                <thead>
+                 <tbody>
+                     <tr>
+                         <td></td>
+                         <td>
+                             <input style="width:600px" id="txtSearch" [(ngModel)]="this.SearchValue" type='text'  class="form-control"/>
+                             <button class="btn-primary" (click)="getSearchResult()">Search</button>
+                         </td>
+                     </tr>
                     <tr>
-                        <th>Topics</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="container" *ngFor="let allTopic of allTopics; let i = index">
-                        <a href="#List-{{ i }}" (click)="getSubTopics(allTopic.topics)" class="btn btn-info" data-toggle="collapse">{{allTopic.topics}}</a>
-
-                        <td>
-                            <div id="List-{{ i }}" class="collapse">
-                                <table class="table table-border">
-                                    <thead>
-                                        <tr class='row'>
-                                            <th>Sub-Topics</th>
-                                            <th>Revision</th>
-                                            <th>Topics</th>
-                                            <th>Articles</th>
-                                        </tr>
-
-                                    </thead>
-                                    <tr class='row'>
-                                       
-                                        <td>
-                                            <table class="table table-responsive table-hover">
-                                                <tbody>
-                                                    <tr class="container" *ngFor="let dr of this.dataResults?.results; let iSubTopic = index">
-                                                        <td> 
-                                                            <a href="#SubtopicList-{{ iSubTopic }}" class="btn btn-info">{{dr.topics}}</a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            </td>
-                                            <td>
-                                            <revisionS [title]="allTopic.recitaNum" [revisionData]="this.title1"></revisionS>
-                                        </td>
-                                        <td>{{allTopic.topics}}</td>
-
-                                        <td>
-
-                                             <articleS [articleList]="this.articlNumList" ></articleS>
-                                        </td>
-                                    </tr>
-                                </table>
+                        <td style="width:200px">
+                            <div *ngFor="let allTopic of allTopics; let i = index">
+                                  <a href="#List-{{ i }}" (click)="getSubTopics(allTopic.topics)" class="btn btn-info" data-toggle="collapse">{{allTopic.topics}}</a>
+                  
                             </div>
+
                         </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        <td class='row' style="width:800px">
+                                <div *ngIf="this.subTopicList.length > 0">
+                                        <table class="table">
+                                        <tr  *ngFor="let dr of this.subTopicList; let iSubTopic = index">
+                                        <td style="width:100%">
+                                         <div  item-width="100%"  *ngIf="dr.topic==this.selTopic">
+                                          <div *ngFor="let record of dr.subTTopic; let x=index"  style="float:left">
+                                            <button (click)="getSubTopicsData(record.title)" type="button" class="btn btn-primary btn-sm">{{record.title}}</button>
+                                          </div>
+                                          </div>
+                                         </td>
+                                            </tr>    
+                                        </table>
+                                  </div>
+                         </td>
+                </tr>
+                 <tr> 
+                 <td style="width:200px">&nbsp;</td>
+                  <td style="width:800px;">
+                      <table style="width:600px">
+                          <tr style="vertical-align: text-top;">
+                              <td>
+                                <revisionS [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
+                              </td>
+                               <td>
+                                   &nbsp;
+                               </td>
+                                <td>
+                                 <articleS [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles" ></articleS>
+                 
+                                </td>
+                            </tr>
+                      </table>
+                     
+                      
+                 </td>
+                </tr>
+          </table>
+        
 
     </div>
 </div>
+
+

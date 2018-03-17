@@ -28,6 +28,17 @@ export class BlueMixService {
     }
 
     
+    getSearchData(topicName: any): Observable<IRootObject> {
+      
+        const endPoint = 'v1/clinic/transmissions';
+        const params = new HttpParams()
+        .set('natural_language_query', topicName)
+        const url = `${this._serviceUrl}`;
+        return this._http.get<IRootObject>(this._serviceUrl,{ headers: headers, params: params })
+        .do(data => console.log('All: ' + JSON.stringify(data)))
+        .catch(this.handleError);
+      } 
+
     getServiceData(topicName: any): Observable<IRootObject> {
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()

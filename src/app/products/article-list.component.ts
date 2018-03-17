@@ -1,6 +1,4 @@
 import {Component,Input ,OnInit , ChangeDetectionStrategy , ChangeDetectorRef} from '@angular/core';
-import { IRecital } from './Recital';
-import { RecitalService } from './recital-service';
 import { IRootObject } from './RootObject';
 
 @Component({
@@ -17,6 +15,12 @@ import { IRootObject } from './RootObject';
       text-align: center;
       width:100%;
     }
+    .ccell {
+      display: block;
+      background-color: #dcdccc;
+      text-align: center;
+      width:100%;
+    }
   `],
   templateUrl: './article-list.component.html'
 })
@@ -30,32 +34,23 @@ export class articleListComponent implements OnInit {
   @Input() title:string;
   @Input() data : string;
   @Input() articleList: number[] = [11, 20, 171,173];
-  
+  @Input() articleData : any[];
   @Input() rootResults: IRootObject[] =  [];
-  arRecitals: IRecital[] =  [];
+  @Input() confidanceList:number[]=[];
+
+
   errorMessage: string;
   topicName:string;
-  
+  selArticalNumber:number;
 
   selArticle(_articleNumber)
   {
-        //this.articleList='';
-      // alert(this.arNumber);
-       
-      //alert(this.articleList);
-       
-      
-  }
+    this.selArticalNumber=0;
+     this.selArticalNumber=_articleNumber;
+   }
 
   constructor(private ref:ChangeDetectorRef) {
    
-  }
-
-  selRevision(_rarticleNumber)
-  {
-     
-
-      
   }
 
  
