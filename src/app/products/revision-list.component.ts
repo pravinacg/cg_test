@@ -9,7 +9,7 @@ import {Pipe} from  '@angular/core';
   styles: [`
     .rcell {
       display: block;
-      background-color:rgb(21, 184, 102);
+      background-color: #dcdcdc;
       text-align: center;
       width:100%;
     }

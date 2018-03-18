@@ -2,74 +2,112 @@
     <div class='panel-heading'>
         {{pageTitle}}
     </div>
-    
-<div class='panel-body'>
-        <div class='row'>
-            <div class='col-md-2'></div>
-            <div class='col-md-9'> 
-            </div>
- </div>
- 
-
-  <div class='table-responsive'>
-            <table class="table table-responsive table-hover" *ngIf='allTopics && allTopics.length'>
-                 <tbody>
-                     <tr>
-                         <td></td>
-                         <td>
-                             <input style="width:600px" id="txtSearch" [(ngModel)]="this.SearchValue" type='text'  class="form-control"/>
-                             <button class="btn-primary" (click)="getSearchResult()">Search</button>
-                         </td>
-                     </tr>
-                    <tr>
-                        <td style="width:200px">
-                            <div *ngFor="let allTopic of allTopics; let i = index">
-                                  <a href="#List-{{ i }}" (click)="getSubTopics(allTopic.topics)" class="btn btn-info" data-toggle="collapse">{{allTopic.topics}}</a>
-                  
-                            </div>
-
-                        </td>
-                        <td class='row' style="width:800px">
-                                <div *ngIf="this.subTopicList.length > 0">
-                                        <table class="table">
-                                        <tr  *ngFor="let dr of this.subTopicList; let iSubTopic = index">
-                                        <td style="width:100%">
-                                         <div  item-width="100%"  *ngIf="dr.topic==this.selTopic">
-                                          <div *ngFor="let record of dr.subTTopic; let x=index"  style="float:left">
-                                            <button (click)="getSubTopicsData(record.title)" type="button" class="btn btn-primary btn-sm">{{record.title}}</button>
-                                          </div>
-                                          </div>
-                                         </td>
-                                            </tr>    
-                                        </table>
-                                  </div>
-                         </td>
-                </tr>
-                 <tr> 
-                 <td style="width:200px">&nbsp;</td>
-                  <td style="width:800px;">
-                      <table style="width:600px">
-                          <tr style="vertical-align: text-top;">
-                              <td>
-                                <revisionS [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
-                              </td>
-                               <td>
-                                   &nbsp;
-                               </td>
-                                <td>
-                                 <articleS [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles" ></articleS>
-                 
-                                </td>
-                            </tr>
-                      </table>
-                     
-                      
-                 </td>
-                </tr>
-          </table>
-        
-
-    </div>
 </div>
 
 
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+
+            <h4>
+                <small>Topics</small>
+            </h4>
+
+
+            <br>
+            <div class="col-sm-2 sidenav" class="w-100 p-3" style="background-color: #eee;height:70px;vertical-align:middle">
+
+                <ul class="nav nav-pills nav-stacked">
+
+                    <li>
+                        <div *ngFor="let allTopic of allTopics; let i = index">
+                            <a href="#List-{{ i }}" (click)="getSubTopics(allTopic.topics)" 
+                            
+                            class="btn button" data-toggle="collapse">{{allTopic.topics}}</a>
+
+                        </div>
+                    </li>
+                </ul>
+                <br>
+            </div>
+            <div class="input-group">
+
+            </div>
+        </div>
+
+        <div class="col-sm-10">
+            <div class="col-sm-10" style="float:left">
+                <br>
+                <input  [(ngModel)]="this.SearchValue" type='text' placeholder="Search .." class="form-control" />
+                <button class="btn-primary" (click)="getSearchResult()">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+                <br>
+            </div>
+            <hr>
+
+
+            <div class="col-sm-12">
+                <br>
+                <div class="w-100 p-3" style="background-color: #eee;height:70px;vertical-align:middle">
+                        <br>
+                    <div *ngIf="this.subTopicList.length > 0">
+                        <div *ngFor="let dr of this.subTopicList; let iSubTopic = index">
+                            <div *ngIf="dr.topic==this.selTopic">
+                                <div *ngFor="let record of dr.subTTopic; let x=index">
+                                    <div style="float:left">
+                                        <button (click)="getSubTopicsData(record.title)" type="button" class="button">{{record.title}}</button>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            
+                <br>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div class="col-sm-10">
+                <table>
+                    <tr style="vertical-align: text-top;">
+                        <td>
+                            <div style="padding:10px; margin: 6px 10px;"><b>Revision</b></div>
+                            <div style="padding:10px; margin: 6px 10px;">
+                                    <revisionS [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
+             
+                            </div>
+                         </td>
+                        <td>
+                           <div></div>
+                        </td>
+                        <td>
+                            <div style="padding:10px; margin: 6px 10px;">Articles</div>
+                            <div style="padding:10px; margin: 6px 10px;">
+                                    <articleS [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles"></articleS>
+
+                            </div>
+                      
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

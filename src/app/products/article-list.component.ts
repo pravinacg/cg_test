@@ -27,8 +27,8 @@ import { IRootObject } from './RootObject';
 
 export class articleListComponent implements OnInit { 
   tblRow= new Array(8);
-  tblcol= new Array(10);
-  maxrCount: number = 103;
+  tblcol= new Array(13);
+  maxrCount: number = 99;
   articleNumber:number;
   //articleList: number[] = [11, 20, 171,173];
   @Input() title:string;

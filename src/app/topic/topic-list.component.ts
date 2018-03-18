@@ -23,7 +23,19 @@ import { Observable } from 'rxjs/Observable';
         width: 200px;
         height: 20px; 
     }
-    
+    .button {
+        background-color: #C0C0C0;
+        border: none;
+        color: white;
+        padding: 8px;
+        height:40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 6px 4px;
+        border-radius: 12px;
+    }
     `],
     
 })
@@ -32,7 +44,7 @@ export class topicListComponent implements OnInit {
     allTopics: ITopic[] =  [];
     public edited = false;
     public isOpen =false;
-    pageTitle: string = 'Home screen';
+    pageTitle: string = 'Demo for ';
     selectedTitle: string = '<div>Heloo</div>';
     errorMessage: string;
     dataResults: IRootObject;
@@ -78,8 +90,7 @@ export class topicListComponent implements OnInit {
     //search 
     getSearchResult(topic:string)
     {
-      
-        //this.SearchResult(this.SearchValue);
+     // alert(this.SearchValue);
         
         this._topicService.getSearchData(this.SearchValue)
         .subscribe(resultArray => {
@@ -126,13 +137,21 @@ export class topicListComponent implements OnInit {
 
     getSubTopicsData(topic:string)
     {
-       
         this.GetTopicDataFromService(topic);
     }
 
+    getSubTopics(topic:string)
+    {
+        
+        this.GetTopicDataFromService(topic);
+        this.selTopic=topic;
+        this.edited = true;
+     }
    
     GetTopicDataFromService(topic:string)
     {
+        topic="topics "+topic;
+        
         this._topicService.getServiceData(topic)
         .subscribe(resultArray => {
          this.dataResults=resultArray;
@@ -158,12 +177,7 @@ export class topicListComponent implements OnInit {
              }
           }
 
-      console.log(this.dataResults.results);
-      console.log(this.recitleNumList);
-      console.log(this.rTitles);
-      console.log(this.articlNumList);
-        console.log(this.aTitles);
-        console.log(this.subTopicList);
+     
     }
 
         },
@@ -171,13 +185,7 @@ export class topicListComponent implements OnInit {
     }
     
 
-     getSubTopics(topic:string)
-    {
-        
-        this.GetTopicDataFromService(topic);
-        this.selTopic=topic;
-        this.edited = true;
-     }
+    
 
      constructor(private _topicService: BlueMixService) {
         

@@ -4,26 +4,30 @@
          <td  *ngFor="let col of tblcol;let j = index">
          <div *ngIf="(i * tblcol.length) + j <= maxCount">
            <div  *ngIf="this.revisionList.indexOf((i * tblcol.length) + j) > -1;else other_content">
-
+             
            <div (click)="selRevision((i * tblcol.length) + j)" class="ccell" > 
               <div  *ngIf="this.confidanceList.indexOf((i * tblcol.length) + j) > -1;else confidLight">
-                  <button type="button" (click)="selRevision((i * tblcol.length) + j)" style="background: darkolivegreen"
+                  <button type="button" (click)="selRevision((i * tblcol.length) + j)" style="background:#08306b"
                   class="btn btn-info btn-lg" data-toggle="modal"
                   data-target="#reModal"
                   >{{ (i * tblcol.length) + j }}</button>
               </div>
-              <ng-template #confidLight><div><button type="button" (click)="selRevision((i * tblcol.length) + j)" 
-                style="background:rgb(21, 184, 102)" class="btn btn-info btn-lg" data-toggle="modal" 
-                data-target="#reModal">{{ (i * tblcol.length) + j }}</button>
+              <ng-template #confidLight><div  class="text-dark"><button type="button" (click)="selRevision((i * tblcol.length) + j)" 
+                style="background:#2171b5;" class="btn btn-info btn-lg " data-toggle="modal" 
+                data-target="#reModal">
+                <p><font color="dark gray">{{ (i * tblcol.length) + j }}</font></p>
+               
+              </button>
                </div></ng-template>
             </div>
            
            </div>
-           
-           <ng-template #other_content> <div  class="ncell"> <button type="button"
+           <ng-template #other_content> <div  class="ncell"> <button type="button" style="background-color: #C0C0C0;"
             disabled class="btn btn-info btn-lg"
             >{{ (i * tblcol.length) + j }}</button>
            </div></ng-template>
+
+           
          </div>
         
           </td>

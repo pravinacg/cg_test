@@ -29,7 +29,7 @@ export class BlueMixService {
 
     
     getSearchData(topicName: any): Observable<IRootObject> {
-      
+        
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()
         .set('natural_language_query', topicName)
@@ -40,6 +40,7 @@ export class BlueMixService {
       } 
 
     getServiceData(topicName: any): Observable<IRootObject> {
+     
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()
         .set('query', topicName)

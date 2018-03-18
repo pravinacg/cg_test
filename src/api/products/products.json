@@ -22,6 +22,37 @@
             {"title":"Right to object"},{"title":"Rights in relation to automated decision making and profiling"}
         ],
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+    },
+
+     {
+        "productId": 5,
+        "topics":"Security",
+        "subtopics":"",
+        
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+    },
+    {
+        "productId": 5,
+        "topics":"International transfers",
+        "subtopics":"",
+       
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+    },
+
+      {
+        "productId": 5,
+        "topics":"Personal data breaches",
+        "subtopics":"",
+        
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+    },
+    {
+        "productId": 5,
+        "topics":"Exemptions",
+        "subtopics":"",
+        
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
     }
+    
 ]   
 
