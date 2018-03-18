@@ -10,12 +10,12 @@
         <div class="col-sm-2 sidenav">
 
             <h4>
-                <small>Topics</small>
+               <b>Topics</b> 
             </h4>
 
 
             <br>
-            <div class="col-sm-2 sidenav" class="w-100 p-3" style="background-color: #eee;height:70px;vertical-align:middle">
+            <div class="col-sm-2 sidenav" class="w-100 p-3" style="background-color: #eee;height:70px;vertical-align:middle;">
 
                 <ul class="nav nav-pills nav-stacked">
 
@@ -23,22 +23,20 @@
                         <div *ngFor="let allTopic of allTopics; let i = index">
                             <a href="#List-{{ i }}" (click)="getSubTopics(allTopic.topics)" 
                             
-                            class="btn button" data-toggle="collapse">{{allTopic.topics}}</a>
+                            class="btn button" data-toggle="collapse"><b>{{allTopic.topics}}</b> </a> <br>
 
                         </div>
                     </li>
                 </ul>
                 <br>
             </div>
-            <div class="input-group">
-
-            </div>
+           
         </div>
 
         <div class="col-sm-10">
-            <div class="col-sm-10" style="float:left">
+            <div class="col-sm-12" style="background-color: #eee;">
                 <br>
-                <input  [(ngModel)]="this.SearchValue" type='text' placeholder="Search .." class="form-control" />
+                <input  [(ngModel)]="this.SearchValue" type='text' placeholder="Your GDPR query ..." class="form-control" />
                 <button class="btn-primary" (click)="getSearchResult()">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -49,14 +47,14 @@
 
             <div class="col-sm-12">
                 <br>
-                <div class="w-100 p-3" style="background-color: #eee;height:70px;vertical-align:middle">
+                <div class="w-100 p-3" style="background-color: #eee;height:auto;vertical-align:middle; text-align: center;">
                         <br>
                     <div *ngIf="this.subTopicList.length > 0">
                         <div *ngFor="let dr of this.subTopicList; let iSubTopic = index">
                             <div *ngIf="dr.topic==this.selTopic">
                                 <div *ngFor="let record of dr.subTTopic; let x=index">
                                     <div style="float:left">
-                                        <button (click)="getSubTopicsData(record.title)" type="button" class="button">{{record.title}}</button>
+                                        <button (click)="getSubTopicsData(record.title)" type="button" class="btn button">{{record.title}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -69,11 +67,11 @@
             </div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
-            <div class="col-sm-10">
+            <div class="col-sm-10" >
                 <table>
                     <tr style="vertical-align: text-top;">
                         <td>
-                            <div style="padding:10px; margin: 6px 10px;"><b>Revision</b></div>
+                           <div  style="padding:10px; margin: 4px 6px;background-color: #eee;"><b>Recitals</b></div>
                             <div style="padding:10px; margin: 6px 10px;">
                                     <revisionS [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
              
@@ -83,7 +81,7 @@
                            <div></div>
                         </td>
                         <td>
-                            <div style="padding:10px; margin: 6px 10px;">Articles</div>
+                            <div style="padding:10px; margin: 6px 10px; background-color: #eee;"><b>Articles</b></div>
                             <div style="padding:10px; margin: 6px 10px;">
                                     <articleS [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles"></articleS>
 

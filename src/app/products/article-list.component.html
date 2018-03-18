@@ -7,21 +7,21 @@
            <div *ngIf="this.articleList.indexOf((i * tblcol.length) + j) > -1;else other_content">
               <div (click)="selArticle((i * tblcol.length) + j)" class="ccell" > 
                   <div  *ngIf="this.confidanceList.indexOf((i * tblcol.length) + j) > -1;else confidLight">
-                      <button type="button" (click)="selArticle((i * tblcol.length) + j)" style="background: darkolivegreen"
+                      <button type="button" (click)="selArticle((i * tblcol.length) + j)" style="background:#08306b"
                       class="btn btn-info btn-lg" data-toggle="modal"
                       data-target="#arModal"
                       >{{ (i * tblcol.length) + j }}</button>
                   </div>
                   <ng-template #confidLight><div><button type="button" (click)="selArticle((i * tblcol.length) + j)" 
-                    style="background:rgb(21, 184, 102)" class="btn btn-info btn-lg" data-toggle="modal" 
+                    style="background:#2171b5" class="btn btn-info btn-lg" data-toggle="modal" 
                     data-target="#arModal">{{ (i * tblcol.length) + j }}</button>
                    </div></ng-template>
                 </div>
                
                </div>
-               <ng-template #other_content> <div  class="ncell"> <button type="button" style="background-color: #C0C0C0;"
+               <ng-template #other_content> <div  class="ncell"> <button type="button" style="background-color: #C0C0C0;color:black"
                 disabled class="btn btn-info btn-lg"
-                >{{ (i * tblcol.length) + j }}</button>
+                > {{ (i * tblcol.length) + j }}</button>
                </div></ng-template>
 
            

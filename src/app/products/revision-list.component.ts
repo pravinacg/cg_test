@@ -23,14 +23,9 @@ import {Pipe} from  '@angular/core';
       background-color: #dcdccc;
       text-align: center;
       width:100%;
+      
     }
-    .txtdiv {
-      white-space: nowrap; 
-      width: 30em; 
-      overflow: hidden;
-      text-overflow: ellipsis; 
-     
-  }
+    
   `],
   templateUrl: './revision-list.component.html',
   //pipes:numberPipe

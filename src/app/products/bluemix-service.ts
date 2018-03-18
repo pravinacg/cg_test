@@ -33,6 +33,7 @@ export class BlueMixService {
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()
         .set('natural_language_query', topicName)
+        .set('limit', "100")
         const url = `${this._serviceUrl}`;
         return this._http.get<IRootObject>(this._serviceUrl,{ headers: headers, params: params })
         .do(data => console.log('All: ' + JSON.stringify(data)))
@@ -44,6 +45,7 @@ export class BlueMixService {
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()
         .set('query', topicName)
+        .set('limit', "100")
         const url = `${this._serviceUrl}`;
         return this._http.get<IRootObject>(this._serviceUrl,{ headers: headers, params: params })
         .do(data => console.log('All: ' + JSON.stringify(data)))

@@ -26,16 +26,27 @@ import { Observable } from 'rxjs/Observable';
     .button {
         background-color: #C0C0C0;
         border: none;
-        color: white;
-        padding: 8px;
+        color: #585050;
+        padding: 10px;
         height:40px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 6px 4px;
-        border-radius: 12px;
+        margin: 6px 6px;
+        border-radius: 15px;
+        
     }
+    .btn:focus,.btn:active {
+                background-color: #2171b5 !important;
+        color:white;
+        border-radius: 15px;
+     }
+    .active {
+        background-color: #2171b5 !important;
+        color:white;
+      }
+  
     `],
     
 })
@@ -44,7 +55,7 @@ export class topicListComponent implements OnInit {
     allTopics: ITopic[] =  [];
     public edited = false;
     public isOpen =false;
-    pageTitle: string = 'Demo for ';
+    pageTitle: string = 'The General Data Protection Regulation (EU) 2016/679 ';
     selectedTitle: string = '<div>Heloo</div>';
     errorMessage: string;
     dataResults: IRootObject;
@@ -124,8 +135,8 @@ export class topicListComponent implements OnInit {
              }
           }
 
-     console.log(this.dataResults.results);
-     console.log(this.confidanceList);
+   //  console.log(this.dataResults.results);
+   //  console.log(this.confidanceList);
    
     }
 
@@ -188,7 +199,7 @@ export class topicListComponent implements OnInit {
     
 
      constructor(private _topicService: BlueMixService) {
-        
+       
     }
 
 
@@ -199,9 +210,9 @@ export class topicListComponent implements OnInit {
             this.allTopics = topics;
             for(let i = 0; i < this.allTopics.length; i++){
                 var a=this.allTopics[i].subtopics;
-                 console.log(a);
+               
                 this.subTopicList.push({topic:this.allTopics[i].topics, subTTopic:a});
-                console.log(this.subTopicList);
+                //console.log(this.subTopicList);
             }
 
         },
