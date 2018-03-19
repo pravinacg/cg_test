@@ -50,7 +50,7 @@ export class articleListComponent implements OnInit {
     let notSure: any;
     var color = '#2171b5';
     var val;
-    debugger;
+   
     
     if (this.confList != undefined && this.confList !== null) {
        for (let i = 0; i < this.confList.length; i++) {

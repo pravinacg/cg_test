@@ -181,7 +181,7 @@ export class topicListComponent implements OnInit {
    
     GetTopicDataFromService(topic:string)
     {
-        topic="topics "+topic;
+        topic="topics::"+topic;
         this._topicService.getTopicDataFromService(topic)
         .subscribe(resultArray => {
          this.dataResults=resultArray;
