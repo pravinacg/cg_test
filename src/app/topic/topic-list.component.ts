@@ -80,6 +80,7 @@ export class topicListComponent implements OnInit {
     confidance:number=0;
     temp:number;
     
+    calling = false;
     subTopicList = new Array();
     get listFilter(): string {
         return this._listFilter;
@@ -102,7 +103,7 @@ export class topicListComponent implements OnInit {
     getSearchResult(topic:string)
     {
      // alert(this.SearchValue);
-        
+      
         this._topicService.getSearchData(this.SearchValue)
         .subscribe(resultArray => {
          this.dataResults=resultArray;
@@ -148,22 +149,24 @@ export class topicListComponent implements OnInit {
 
     getSubTopicsData(topic:string)
     {
+        this.calling = true;
         this.GetTopicDataFromService(topic);
+       
     }
 
     getSubTopics(topic:string)
     {
-        
+        this.calling = true;
         this.GetTopicDataFromService(topic);
         this.selTopic=topic;
         this.edited = true;
+        
      }
    
     GetTopicDataFromService(topic:string)
     {
         topic="topics "+topic;
-        
-        this._topicService.getServiceData(topic)
+        this._topicService.getTopicDataFromService(topic)
         .subscribe(resultArray => {
          this.dataResults=resultArray;
          if(this.dataResults != undefined && this.dataResults !== null){
@@ -171,6 +174,7 @@ export class topicListComponent implements OnInit {
          this.articlNumList = [];
          this.rTitles=[];
          this.aTitles=[];
+         this.calling = false;
          for(let i = 0; i < this.dataResults.results.length; i++){
 
             this.temp = Number((this.dataResults.results[i].index));
@@ -203,8 +207,10 @@ export class topicListComponent implements OnInit {
     }
 
 
-
     ngOnInit(): void {
+    
+      // this.calling=false;
+         
         this._topicService.getTopics()
         .subscribe(topics => {
             this.allTopics = topics;

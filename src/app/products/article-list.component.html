@@ -5,13 +5,16 @@
          <td  *ngFor="let col of tblcol;let j = index">
          <div *ngIf="(i * tblcol.length) + j <= this.maxrCount">
            <div *ngIf="this.articleList.indexOf((i * tblcol.length) + j) > -1;else other_content">
+
               <div (click)="selArticle((i * tblcol.length) + j)" class="ccell" > 
+                
                   <div  *ngIf="this.confidanceList.indexOf((i * tblcol.length) + j) > -1;else confidLight">
                       <button type="button" (click)="selArticle((i * tblcol.length) + j)" style="background:#08306b"
                       class="btn btn-info btn-lg" data-toggle="modal"
                       data-target="#arModal"
                       >{{ (i * tblcol.length) + j }}</button>
                   </div>
+
                   <ng-template #confidLight><div><button type="button" (click)="selArticle((i * tblcol.length) + j)" 
                     style="background:#2171b5" class="btn btn-info btn-lg" data-toggle="modal" 
                     data-target="#arModal">{{ (i * tblcol.length) + j }}</button>

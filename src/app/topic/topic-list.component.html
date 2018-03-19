@@ -1,3 +1,11 @@
+<div *ngIf="calling">
+        <div id="mydiv">
+                <img src="../../assets/images/Loading_icon.gif" class="ajax-loader" alt="calling to bluemix service"/>
+        </div>
+</div>
+
+
+
 <div class='panel panel-primary'>
     <div class='panel-heading'>
         {{pageTitle}}
@@ -34,18 +42,22 @@
         </div>
 
         <div class="col-sm-10">
-            <div class="col-sm-12" style="background-color: #eee;">
+            <div style="background-color: #eee;height:auto!important;">
                 <br>
-                <input  [(ngModel)]="this.SearchValue" type='text' placeholder="Your GDPR query ..." class="form-control" />
-                <button class="btn-primary" (click)="getSearchResult()">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
+                <div class="col-sm-8" style="float:left;margin-top: -18px;">
+                    <input [(ngModel)]="this.SearchValue" type='text' placeholder="Your GDPR query ..." class="form-control" />
+                </div>
+                <div style="float:left;margin-top: -15px;">
+                    <button class="btn-primary" (click)="getSearchResult()">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
                 <br>
             </div>
             <hr>
 
 
-            <div class="col-sm-12">
+            <div class="col-sm-10">
                 <br>
                 <div class="w-100 p-3" style="background-color: #eee;height:auto;vertical-align:middle; text-align: center;">
                         <br>
@@ -72,9 +84,8 @@
                     <tr style="vertical-align: text-top;">
                         <td>
                            <div  style="padding:10px; margin: 4px 6px;background-color: #eee;"><b>Recitals</b></div>
-                            <div style="padding:10px; margin: 6px 10px;">
+                            <div style="padding:10px; margin: 6px 10px; overflow-y: scroll;height:700px;">
                                     <revisionS [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
-             
                             </div>
                          </td>
                         <td>
@@ -82,7 +93,7 @@
                         </td>
                         <td>
                             <div style="padding:10px; margin: 6px 10px; background-color: #eee;"><b>Articles</b></div>
-                            <div style="padding:10px; margin: 6px 10px;">
+                            <div style="padding:10px; margin: 6px 10px;overflow-y: scroll;height:700px;">
                                     <articleS [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles"></articleS>
 
                             </div>

@@ -20,6 +20,7 @@ export class BlueMixService {
     private _productUrl = './api/products/products.json';
     constructor(private _http: HttpClient) { }
 
+
     
     getTopics(): Observable<ITopic[]> {
         return this._http.get<ITopic[]>(this._productUrl)
@@ -40,8 +41,9 @@ export class BlueMixService {
         .catch(this.handleError);
       } 
 
-    getServiceData(topicName: any): Observable<IRootObject> {
+    getTopicDataFromService(topicName: any): Observable<IRootObject> {
      
+        debugger;
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()
         .set('query', topicName)

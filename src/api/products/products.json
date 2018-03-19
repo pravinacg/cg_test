@@ -11,7 +11,10 @@
     {
         "productId": 5,
         "topics":"Accountability and governance",
-        "subtopics":[{"title":"Contracts"},{"title":"Documentation"},{"title":"Data protection by design and default"}],
+        "subtopics":[{"title":"Contracts"},{"title":"Documentation"},{"title":"Data protection impact assessments"},
+            {"title":"Data protection officers"},{"title":"Codes of conduct and certification"}
+        
+        ],
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
     },
     {
@@ -24,13 +27,7 @@
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
     },
 
-     {
-        "productId": 5,
-        "topics":"Security",
-        "subtopics":"",
-        
-        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-    },
+    
     {
         "productId": 5,
         "topics":"International transfers",
