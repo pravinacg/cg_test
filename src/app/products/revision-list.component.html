@@ -1,36 +1,25 @@
 <table class="table table-bordered">
   <tbody>
+    
     <tr *ngFor="let row of tblRow;let i = index">
-      <td *ngFor="let col of tblcol;let j = index">
-        <div *ngIf="(i * tblcol.length) + j <= maxCount">
-          <div *ngIf="this.revisionList.indexOf((i * tblcol.length) + j) > -1;else other_content">
-    
-            <div (click)="selRevision((i * tblcol.length) + j)" class="ccell">
-              <div *ngIf="this.confidanceList.indexOf((i * tblcol.length) + j) > -1;else confidLight">
-                <button type="button" (click)="selRevision((i * tblcol.length) + j)" style="background:#08306b" class="btn btn-info btn-lg"
-                  data-toggle="modal" data-target="#reModal">{{(i * tblcol.length) + j}}</button>
-              </div>
-              <ng-template #confidLight>
-                <div>
-                  <button type="button" (click)="selRevision((i * tblcol.length) + j)" style="background:#2171b5;" class="btn btn-info btn-lg"
-                    data-toggle="modal" data-target="#reModal">{{(i * tblcol.length) + j}}
-                  </button>
-                </div>
-              </ng-template>
-            </div>
-    
+        <td *ngFor="let col of tblcol;let j = index">
+          <div *ngIf="(i * tblcol.length) + j <= this.maxCount">
+              <div *ngIf="this.revisionList.indexOf((i * tblcol.length) + j) > -1;else other_content">
+                   <button class="btn btn-info btn-lg" type="button" (click)="selRevision((i * tblcol.length) + j)" data-toggle="modal" [ngStyle]="{ 'background': getRandomColor((i * tblcol.length) + j)}"
+                    data-target="#reModal">{{ (i * tblcol.length) + j }}</button>
+               </div>
           </div>
+  
           <ng-template #other_content>
-            <div class="ncell">
-              <button type="button" style="background-color: #C0C0C0;color:black" disabled class="btn btn-info btn-lg">{{ (i * tblcol.length) + j }}</button>
-            </div>
-          </ng-template>
-    
-    
-        </div>
-    
-      </td>
-    </tr>
+              <div class="ncell">
+                <button type="button" style="background-color: #C0C0C0;color:black" disabled class="btn btn-info btn-lg"> {{ (i * tblcol.length) + j }}</button>
+              </div>
+            </ng-template>
+        </td>
+      </tr>
+
+
+
  </tbody>
 </table>
 
@@ -44,7 +33,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h6 class="modal-title"> <b>  </b> </h6>
         </div>
-        <div>
+        <div style="padding:10px; margin: 6px 10px;">
             <table class="table table-responsive table-hover"
             *ngIf='this.revisionData && this.revisionData.length'>
                        

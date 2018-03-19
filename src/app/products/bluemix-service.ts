@@ -43,7 +43,7 @@ export class BlueMixService {
 
     getTopicDataFromService(topicName: any): Observable<IRootObject> {
      
-        debugger;
+       
         const endPoint = 'v1/clinic/transmissions';
         const params = new HttpParams()
         .set('query', topicName)

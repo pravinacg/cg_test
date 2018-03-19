@@ -70,7 +70,7 @@ export class topicListComponent implements OnInit {
     
     rTitles = new Array();
     aTitles=new Array();
-
+    confList=new Array();
     tempSubTopic:string[]=[];
     articlNumList:number[]=[];
     recitleNumList:number[]=[];
@@ -79,7 +79,10 @@ export class topicListComponent implements OnInit {
     confidanceList:number[]=[];
     confidance:number=0;
     temp:number;
-    
+    isSearch=false;
+
+
+
     calling = false;
     subTopicList = new Array();
     get listFilter(): string {
@@ -103,16 +106,20 @@ export class topicListComponent implements OnInit {
     getSearchResult(topic:string)
     {
      // alert(this.SearchValue);
-      
+     this.isSearch=true;
+     this.calling = true;
         this._topicService.getSearchData(this.SearchValue)
         .subscribe(resultArray => {
          this.dataResults=resultArray;
-         if(this.dataResults != undefined && this.dataResults !== null){
          this.recitleNumList = [];
          this.articlNumList = [];
          this.aTitles=[];
          this.rTitles=[];
+         this.confList=[];
          let notSure: any; 
+         this.confidanceList=[];
+         if(this.dataResults != undefined && this.dataResults !== null){
+         
          for(let i = 0; i < this.dataResults.results.length; i++){
             
             this.temp = Number((this.dataResults.results[i].index));
@@ -128,16 +135,20 @@ export class topicListComponent implements OnInit {
                 this.articlNumList.push(this.temp);
                 this.aTitles.push({title:this.dataResults.results[i].title, number:this.temp, text: this.dataResults.results[i].text});
              }
+             
              notSure=this.dataResults.results[i].result_metadata;
              var a=notSure.confidence;
+             this.confList.push({number:this.temp,value:a});
+            
              if (Number(a) >= 0.5)
              {
                  this.confidanceList.push(this.temp);
+                 
              }
           }
-
+          this.calling = false;
    //  console.log(this.dataResults.results);
-   //  console.log(this.confidanceList);
+     console.log(this.confList);
    
     }
 
@@ -149,6 +160,8 @@ export class topicListComponent implements OnInit {
 
     getSubTopicsData(topic:string)
     {
+        this.isSearch=false;
+      
         this.calling = true;
         this.GetTopicDataFromService(topic);
        
@@ -156,6 +169,9 @@ export class topicListComponent implements OnInit {
 
     getSubTopics(topic:string)
     {
+       
+        this.isSearch=false;
+       
         this.calling = true;
         this.GetTopicDataFromService(topic);
         this.selTopic=topic;
@@ -199,10 +215,7 @@ export class topicListComponent implements OnInit {
         error => this.errorMessage = <any>error);
     }
     
-
-    
-
-     constructor(private _topicService: BlueMixService) {
+    constructor(private _topicService: BlueMixService) {
        
     }
 
