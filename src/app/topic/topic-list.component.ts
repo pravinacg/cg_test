@@ -126,9 +126,12 @@ export class topicListComponent implements OnInit {
          for(let i = 0; i < this.dataResults.results.length; i++){
             
             this.temp = Number((this.dataResults.results[i].index));
-          
+            notSure=this.dataResults.results[i].result_metadata;
+
              if(this.dataResults.results[i].title.includes("Recital"))
              {    
+                
+              var a=notSure.confidence;
               this.rconfList.push({number:this.temp,value:a});
               this.recitleNumList.push(this.temp);
               this.rTitles.push({title:this.dataResults.results[i].title, number: this.dataResults.results[i].index, text: this.dataResults.results[i].text});
@@ -136,17 +139,17 @@ export class topicListComponent implements OnInit {
              else
              {
                
+               
+                var a=notSure.confidence;
                 this.temp = Number(this.dataResults.results[i].title.match(/\d+/g).map(Number));
                 this.aconfList.push({number:this.temp,value:a});
                 this.articlNumList.push(this.temp);
                 this.aTitles.push({title:this.dataResults.results[i].title, number:this.temp, text: this.dataResults.results[i].text});
              }
              
-             notSure=this.dataResults.results[i].result_metadata;
-             var a=notSure.confidence;
+             
             
             
-             if (Number(a) >= 0.5)
              {
                  this.confidanceList.push(this.temp);
                  

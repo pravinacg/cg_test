@@ -51,7 +51,7 @@ export class articleListComponent implements OnInit {
     var color = '#2171b5';
     var val;
    
-    
+    debugger;
     if (this.aconfList != undefined && this.aconfList !== null) {
        for (let i = 0; i < this.aconfList.length; i++) {
           
