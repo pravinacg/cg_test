@@ -4,8 +4,6 @@
         </div>
 </div>
 
-
-
 <div class='panel panel-primary'>
     <div class='panel-heading'>
         {{pageTitle}}
@@ -13,7 +11,7 @@
 </div>
 
 
-<div class="container-fluid">
+<div>
     <div class="row content">
         <div class="col-sm-2 sidenav">
 
@@ -85,7 +83,7 @@
                         <td>
                            <div  style="padding:10px; margin: 4px 6px;background-color: #eee;"><b>Recitals</b></div>
                             <div style="padding:10px; margin: 6px 10px; overflow-y: scroll;height:700px;">
-                                    <revisionS  [IsSearch]="this.isSearch" [confList]="this.confList" [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
+                                    <revisionS  [IsSearch]="this.isSearch" [rconfList]="this.rconfList" [confidanceList]="this.confidanceList" [revisionList]="this.recitleNumList" [revisionData]="this.rTitles"></revisionS>
                             </div>
                          </td>
                         <td>
@@ -94,7 +92,7 @@
                         <td>
                             <div style="padding:10px; margin: 6px 10px; background-color: #eee;"><b>Articles</b></div>
                             <div style="padding:10px; margin: 6px 10px;overflow-y: scroll;height:700px;">
-                                <articleS [IsSearch]="this.isSearch" [confList]="this.confList" [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles"></articleS>
+                                <articleS [IsSearch]="this.isSearch" [aconfList]="this.aconfList" [confidanceList]="this.confidanceList" [articleList]="this.articlNumList" [articleData]="this.aTitles"></articleS>
 
                             </div>
                       

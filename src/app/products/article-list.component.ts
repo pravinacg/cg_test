@@ -37,7 +37,7 @@ export class articleListComponent implements OnInit {
   @Input() articleData: any[];
   @Input() rootResults: IRootObject[] = [];
   @Input() confidanceList: number[] = [];
-  @Input() confList: number[] = [];
+  @Input() aconfList: number[] = [];
   @Input() IsSearch=false;
   errorMessage: string;
   topicName: string;
@@ -52,10 +52,10 @@ export class articleListComponent implements OnInit {
     var val;
    
     
-    if (this.confList != undefined && this.confList !== null) {
-       for (let i = 0; i < this.confList.length; i++) {
+    if (this.aconfList != undefined && this.aconfList !== null) {
+       for (let i = 0; i < this.aconfList.length; i++) {
           
-          notSure=this.confList[i];
+          notSure=this.aconfList[i];
           if(_number == notSure.number)
           {
             val=notSure.value;

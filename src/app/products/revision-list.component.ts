@@ -40,7 +40,7 @@ export class revisionListComponent  implements OnInit {
   @Input() title:string;
   @Input() revisionData : any[];
   @Input() confidanceList:number[]=[];
-  @Input() confList: number[] = [];
+  @Input() rconfList: number[] = [];
   @Input() IsSearch=false;
   
   rootResults: IRootObject[] =  [];
@@ -53,10 +53,10 @@ export class revisionListComponent  implements OnInit {
     var val;
    
     
-    if (this.confList != undefined && this.confList !== null) {
-       for (let i = 0; i < this.confList.length; i++) {
+    if (this.rconfList != undefined && this.rconfList !== null) {
+       for (let i = 0; i < this.rconfList.length; i++) {
           
-          notSure=this.confList[i];
+          notSure=this.rconfList[i];
           if(_number == notSure.number)
           {
             val=notSure.value;

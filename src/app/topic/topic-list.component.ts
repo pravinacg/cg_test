@@ -32,7 +32,7 @@ import { Observable } from 'rxjs/Observable';
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        font-size: 13px;
         margin: 6px 6px;
         border-radius: 15px;
         
@@ -70,7 +70,9 @@ export class topicListComponent implements OnInit {
     
     rTitles = new Array();
     aTitles=new Array();
-    confList=new Array();
+    aconfList=new Array();
+    rconfList=new Array();
+
     tempSubTopic:string[]=[];
     articlNumList:number[]=[];
     recitleNumList:number[]=[];
@@ -115,7 +117,8 @@ export class topicListComponent implements OnInit {
          this.articlNumList = [];
          this.aTitles=[];
          this.rTitles=[];
-         this.confList=[];
+         this.aconfList=[];
+         this.rconfList=[];
          let notSure: any; 
          this.confidanceList=[];
          if(this.dataResults != undefined && this.dataResults !== null){
@@ -125,20 +128,23 @@ export class topicListComponent implements OnInit {
             this.temp = Number((this.dataResults.results[i].index));
           
              if(this.dataResults.results[i].title.includes("Recital"))
-             {
+             {    
+              this.rconfList.push({number:this.temp,value:a});
               this.recitleNumList.push(this.temp);
               this.rTitles.push({title:this.dataResults.results[i].title, number: this.dataResults.results[i].index, text: this.dataResults.results[i].text});
              }
              else
              {
+               
                 this.temp = Number(this.dataResults.results[i].title.match(/\d+/g).map(Number));
+                this.aconfList.push({number:this.temp,value:a});
                 this.articlNumList.push(this.temp);
                 this.aTitles.push({title:this.dataResults.results[i].title, number:this.temp, text: this.dataResults.results[i].text});
              }
              
              notSure=this.dataResults.results[i].result_metadata;
              var a=notSure.confidence;
-             this.confList.push({number:this.temp,value:a});
+            
             
              if (Number(a) >= 0.5)
              {
@@ -147,8 +153,10 @@ export class topicListComponent implements OnInit {
              }
           }
           this.calling = false;
-   //  console.log(this.dataResults.results);
-     console.log(this.confList);
+     console.log(this.dataResults.results);
+     console.log(this.aconfList);
+     console.log(this.rconfList);
+       
    
     }
 
