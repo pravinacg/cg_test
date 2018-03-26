@@ -138,17 +138,14 @@ export class topicListComponent implements OnInit {
              }
              else
              {
-               
-               
+                       
                 var a=notSure.confidence;
                 this.temp = Number(this.dataResults.results[i].title.match(/\d+/g).map(Number));
                 this.aconfList.push({number:this.temp,value:a});
                 this.articlNumList.push(this.temp);
                 this.aTitles.push({title:this.dataResults.results[i].title, number:this.temp, text: this.dataResults.results[i].text});
              }
-             
-             
-            
+           
             
              {
                  this.confidanceList.push(this.temp);
